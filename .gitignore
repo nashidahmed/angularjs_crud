@@ -1,0 +1,11 @@
+# Ignore node modules folder
+node_modules/
+
+# Ignore bower_components folder
+bower_components/
+
+# Ignore public build files
+public/
+
+# Ignore package-lock
+package-lock.json

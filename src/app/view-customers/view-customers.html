@@ -1,0 +1,132 @@
+<h1 class="text-center heading">Customer Management Portal</h1>
+
+<!-- Add button and search bar -->
+<div class="row add-search-row">
+    <div class="pull-left">
+        <button type="button" class="btn btn-primary" ng-click="addNewCustomer = true" ng-hide="addNewCustomer">Add Customer</button>
+    </div>
+    <div class="pull-right form-inline">
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="searchParam" placeholder="Search Customers" />
+        </div>
+    </div>
+</div>
+
+<!-- Add new customer form -->
+<form name="newCustomerForm" ng-show="addNewCustomer">
+    <div class="row">
+        <div class="col-sm-4 form-group">
+            <strong>First Name</strong>
+            <input type="text" class="form-control" id="firstName_new" ng-model="newCustomer.first_name" required />
+        </div>
+        <div class="col-sm-4 form-group">
+            <strong>Last Name</strong>
+            <input type="text" class="form-control" id="lastName_new" ng-model="newCustomer.last_name" required />
+        </div>
+        <div class="col-sm-4 form-group">
+            <strong>Email</strong>
+            <input type="email" class="form-control" id="email_new" ng-model="newCustomer.email" required />
+        </div>
+        <div class="col-sm-4 form-group">
+            <strong>IP</strong>
+            <input type="text" class="form-control" id="ip_new" ng-model="newCustomer.ip" required />
+        </div>
+        <div class="col-sm-4 form-group">
+            <strong>Latitude</strong>
+            <input type="text" class="form-control" id="latitude_new" ng-model="newCustomer.latitude" required />
+        </div>
+        <div class="col-sm-4 form-group">
+            <strong>Longitude</strong>
+            <input type="text" class="form-control" id="longitude_new" ng-model="newCustomer.longitude" required />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" ng-click="addCustomer(newCustomer)" ng-disabled="newCustomerForm.$invalid">Add</button>
+    <button type="button" class="btn btn-default" ng-click="addNewCustomer = false; newCustomer = {}">Cancel</button>
+</form>
+
+<!-- Customer table headers -->
+<div class="row font-weight-bold table-header">
+    <div class="col-xs-1">
+        ID
+    </div>
+    <div class="col-xs-2">
+        First Name
+    </div>
+    <div class="col-xs-2">
+        Last Name
+    </div>
+    <div class="col-xs-3">
+        Email
+    </div>
+    <div class="col-xs-2">
+        Actions
+    </div>
+    <div class="col-xs-2">
+
+    </div>
+</div>
+<!-- Customer table data -->
+<div class="row table-rows" ng-repeat="customer in filterData = (customers | filter: searchParam) | limitTo: 10: 10 * (currentPage - 1)">
+    <ng-form name="editCustomerForm_{{customer.id}}">
+        <div class="col-xs-1">
+            {{customer.id}}
+        </div>
+        <div class="col-xs-2">
+            <span ng-if="!customer.editMode">{{customer.first_name}}</span>
+            <input ng-if="customer.editMode" type="text" class="form-control" id="firstName_{{customer.id}}" ng-model="customer.first_name" required />
+        </div>
+        <div class="col-xs-2">
+            <span ng-if="!customer.editMode">{{customer.last_name}}</span>
+            <input ng-if="customer.editMode" type="text" class="form-control" id="lastName_{{customer.id}}" ng-model="customer.last_name" required />
+        </div>
+        <div class="col-xs-3">
+            <span ng-if="!customer.editMode">{{customer.email}}</span>
+            <input ng-if="customer.editMode" type="email" class="form-control" id="email_{{customer.id}}" ng-model="customer.email" required />
+        </div>
+        <div class="col-xs-2">
+            <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Edit Customer" ng-click="editCustomer(customer)"></i>
+            <i class="fa fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Delete Customer" ng-click="deleteCustomer(customer)"></i>
+        </div>
+        <div class="col-xs-2">
+            <span ng-click="customer.showDetails = !customer.showDetails" class="cursor-pointer">
+                View Details <i class="fa" ng-class="customer.showDetails? 'fa-caret-up': 'fa-caret-down'"></i>
+            </span>
+        </div>
+        <div ng-if="customer.showDetails" class="customer-details">
+            <div class="col-sm-2 col-sm-offset-1">
+                <strong>IP: </strong><span ng-if="!customer.editMode">{{customer.ip}}</span>
+                <input ng-if="customer.editMode" type="text" class="form-control" id="ip_{{customer.id}}" ng-model="customer.ip" required />
+            </div>
+            <div class="col-sm-2">
+                <strong>Latitude: </strong><span ng-if="!customer.editMode">{{customer.latitude}}</span>
+                <input ng-if="customer.editMode" type="text" class="form-control" id="latitude_{{customer.id}}" ng-model="customer.latitude" required />
+            </div>
+            <div class="col-sm-2">
+                <strong>Longitude: </strong><span ng-if="!customer.editMode">{{customer.longitude}}</span>
+                <input ng-if="customer.editMode" type="text" class="form-control" id="longitude_{{customer.id}}" ng-model="customer.longitude" required />
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-3 col-sm-offset-1">
+                <strong>Created at: </strong>{{customer.created_at | date: 'medium'}}
+            </div>
+            <div ng-if="customer.updated_at">
+                <div class="clearfix"></div>
+                <div class="col-sm-3 col-sm-offset-1">
+                    <strong>Updated at: </strong>{{customer.updated_at | date: 'medium'}}
+                </div>
+            </div>
+            <div ng-if="customer.editMode">
+                <div class="clearfix"></div>
+                <div class="col-sm-2 col-sm-offset-8">
+                    <button type="button" class="btn btn-success" ng-disabled="editCustomerForm_{{customer.id}}.$invalid" ng-click="updateCustomer(customer)">Update</button>
+                </div>
+            </div>
+        </div>
+    </ng-form>
+</div>
+<!-- Pagination -->
+<div class="text-center">
+    <ul uib-pagination boundary-links="true" force-ellipses="true" num-pages="numPages" max-size="maxSize" total-items="filterData.length"
+        items-per-page="customersPerPage" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;"
+        next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+</div>

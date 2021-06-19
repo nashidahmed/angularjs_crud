@@ -1,0 +1,64 @@
+.brand-logo {
+    position: absolute;
+    top: 10px;
+    filter: invert(1);
+    height: 3rem;
+}
+
+.main {
+    margin-top: 5em;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}
+
+.table-header {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-bottom: 2px solid #DCDCDC;
+}
+
+.table-rows {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #DCDCDC;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+i {
+    cursor: pointer;
+}
+
+.heading {
+    margin-bottom: 0.5em;
+}
+
+.customer-details {
+    padding-top: 3em;
+    padding-bottom: 3em;
+}
+
+.customer-details .clearfix {
+    margin-bottom: 1em;
+}
+
+.add-search-row {
+    margin-bottom: 1em;
+}
+
+.fa-edit {
+    margin-left: 0.25em;
+    margin-right: 0.5em;
+}
+
+.footer {
+    background-color: #222;
+    color: white;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-color: #080808;
+}
