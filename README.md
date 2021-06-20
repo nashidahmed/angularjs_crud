@@ -1,41 +1,50 @@
-AngularJS CRUD
-=============
+<h1 align="center">AngularJS CRUD</h1>
 
-This is a simple CRUD application based on a customer management portal built using the AngularJS framework.
+<i align="center">This is a simple CRUD application based on a customer management portal built using the AngularJS framework.</i>
+
+<hr />
 
 ## Getting Started
 
-Must have [node.js](http://nodejs.org) and [git](https://git-scm.com/downloads) installed in the system.
+### Prerequisites
 
-### Install bower globally using terminal (open terminal)
+- Must have [Node.js](http://nodejs.org) and [Git](https://git-scm.com/downloads) installed in the system.
+
+Install bower globally using [Node Package Manager](https://www.npmjs.com/get-npm/)
 ```
 npm install -g bower
 ```
 
-### Install gulp globally using terminal (open terminal)
+Install gulp globally using [Node Package Manager](https://www.npmjs.com/get-npm/)
 ```
 npm install -g gulp
 ```
 
-## Installation
+## Setting Up
+Clone the application
 ```
-# Clone the application
 git clone 
+```
 
-# Change to project directory
+Change to project directory
+```
 cd code_challenge
+```
 
-# Install npm dependencies
+Install npm dependencies
+```
 npm install
 ```
 ## Workflow
+Continuous incremental rebuild + web server (dev version)
 ```
-# Continuous incremental rebuild + web server (dev version)
-npm start \\ or gulp
-
-# Single build without the watch. Note that 'build' is a task inside gulpjs
-npm run build \\ or gulp build
-
-# View aplication
-open http://localhost:9990 on a browser. 
+npm start
 ```
+
+Single build without the watch. Note that 'build' is a task inside gulpjs
+```
+npm run build
+```
+
+## View aplication
+Open http://localhost:9990/ on a browser. 
