@@ -23,7 +23,7 @@ npm install -g gulp
 ## Setting Up
 Clone the application
 ```
-git clone 
+git clone https://github.com/nashidahmed/angularjs_crud.git
 ```
 
 Change to project directory
